@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang = "en/US">
+<meta charset = "UTF-8"/>
+<head>
+	<title>Pong</title>
+	<style>
+	body{
+		background-color: #bcbcbc;
+	}
+	
+	#title{
+		text-align: center;
+		font-family: Impact;
+		font-size: 50px;
+	}
+	
+	h1.controls{
+		text-align: center;
+		font-family: Impact;
+	}
+	
+	#canvas{
+		background-color: black;
+		padding-left: 0;
+  		  padding-right: 0;
+  		  margin-left: auto;
+  		  margin-right: auto;
+ 		   display: block;
+	}
+	</style>
+	<script type="text/javascript" src="AAGameEngine.js"></script>
+</head>
+<body>
+<h1 id="title">PONG</h1>
+<canvas id="canvas" width="640" height="480"></canvas>
+<h1 class="controls">W-To Move Up  S-To Move Down</h1>
+<h1 class="controls">Press W or S To Start</h1>
+<script>
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+var running = true,
+	width = 640,
+	height = 480,
+	direction = Math.floor(Math.random() * 4 + 1),
+	ballY = 8,
+	score1 = 0,
+	score2 = 0,
+	botW = false,
+	playerW = false,
+	start = true;
+
+var player = new gamePlay(30, height/2-50, 20, 100, 8);
+var bot = new gamePlay(width-1-30, height/2-50, 20, 100, 8);
+var ball = new gamePlay(width/2-5, height/2-5, 15, 15, 6);
+
+function botMove(){
+	if(ball.x > width/2){
+		if(bot.y + 10 < ball.y){
+			bot.y += bot.speed;
+		}
+		if(bot.y + 60 > ball.y){
+			bot.y -= bot.speed;
+		}
+	}
+}
+
+function ballMove(){
+	if(direction == 1){
+		ball.x -= ball.speed;
+		ball.y -= ballY;
+	}
+	if(direction == 2){
+		ball.x -= ball.speed;
+		ball.y += ballY;
+	}
+	if(direction == 3){
+		ball.x += ball.speed;
+		ball.y += ballY;
+	}
+	if(direction == 4){
+		ball.x += ball.speed;
+		ball.y -= ballY;
+	}
+	if(ball.x <= 0){
+		ball.x = width/2-5;
+		ball.y = height/2-5;
+		direction = Math.floor(Math.random() * 4 + 1);
+		score1++;
+		win();
+	}
+	if(ball.x >= width - ball.width){
+		ball.x = width/2-5;
+		ball.y = height/2-5;
+		direction = Math.floor(Math.random() * 4 + 1);
+		score2++;
+		win();
+	}
+	if(ball.y <= 0){
+		ball.speed = ball.speed;
+		ballY = -ballY;
+	}
+	if(ball.y >= height-ball.height){
+		ball.speed = ball.speed;
+		ballY = -ballY;
+	}
+	if(collision(player, ball)){
+		ball.speed = -ball.speed;
+		ballY = ballY;
+	}
+	if(collision(bot, ball)){
+		ball.speed = -ball.speed;
+		ballY = ballY;
+	}
+}
+
+function win(){
+	if(score2 == 10){
+		playerW = true;
+		score1 = 0;
+		score2 = 0;
+	}
+	if(score1 == 10){
+		botW = true
+		score1 = 0;
+		score2 = 0;
+	}
+}
+
+function winScreen(){
+	if(playerW){
+		ctx.fillStyle = "white";
+		ctx.font = "75px Impact";
+		ctx.fillText("Player One Won",75,height/2);
+		if(keys[keyW] || keys[keyS]){
+			playerW = false;
+		}
+	}
+	if(botW){
+		ctx.fillStyle = "white";
+		ctx.font = "100px Impact";
+		ctx.fillText("You Lose",160,height/2);
+		if(keys[keyW] || keys[keyS]){
+			botW = false;
+		}
+	}
+}
+
+function startScreen(){
+	if(start){
+		ctx.fillStyle = "white";
+		ctx.font = "100px Impact";
+		ctx.fillText("PONG",200,height/2);
+		if(keys[keyW] || keys[keyS]){
+			start = false;
+			console.log("game start");
+		}
+	}
+}
+
+function render(){
+	ctx.clearRect(0,0,width,height);
+	if(!playerW && !botW && !start){
+		ctx.fillStyle = "white";
+		ctx.font = "20px Impact";
+		ctx.fillText(score1, width-60, 40);
+		ctx.fillText(score2, 40, 40);
+		
+		ctx.fillStyle = "white";
+		ctx.fillRect(player.x,player.y,player.width,player.height);
+		ctx.fillRect(bot.x,bot.y,bot.width,bot.height);
+		
+		ctx.fillStyle = "white";
+		ctx.fillRect(width/2+3, 0, 3, height);
+		
+		ctx.fillStyle = "red";
+		ctx.fillRect(ball.x,ball.y,ball.width,ball.height);
+	}
+	winScreen();
+	startScreen();
+}
+
+function update(){
+	if(!playerW && !botW && !start){
+		moveBirdsEye(player,keyW, keyS);
+		bounds(player, width, height);
+		bounds(bot, width, height);
+		botMove();
+		ballMove();
+	}
+}
+
+animate(running);
+
+</script>
+
+</body>
+</html>
