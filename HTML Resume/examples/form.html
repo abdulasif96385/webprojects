@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <title>Examples</title>
+  <link rel="stylesheet" href="../styles/index.css">
+  <body>
+    <header>
+      <nav><ul>
+        <li class = "nava"><a href="../index.html">Home</a></li>
+        <li class = "nava"><a href="../resume.html">Resume</a></li>
+        <li class = "nava"><a href="../courses.html">Courses</a></li>
+        <li class = "nava cur"><a href="index.html">Examples</a></li>
+        <li class = "nava"><a href="../album/index.html">Photo Album</a></li>
+      </ul></nav>
+      <h1 class = "headers">Abdul Asif</h1>
+      <h2 class = "headers">Siena College Student</h2>
+      <h2 class = "headers">Computer Science</h2>
+      <h2 class = "headers">Mathematics</h2>
+      <br>
+    </header>
+
+    <main>
+      <form>
+
+        <h3>Login</h3>
+        <label for="username">Username: </label>
+        <input type="text" id = "username" name="Username:">
+        <label for="pass">Password: </label>
+        <input type="text" id = "pass" name="Password">
+
+        <br>
+
+        <h3>Origin</h3>
+        <label for="birth">Birthday: </label>
+        <input type="date" id = "birth" name="Birthday">
+        <label for="country">Country: </label>
+        <input type="text" id = "country" name="Country">
+
+        <h3>Interests (Choose as many as you want)</h3>
+        <input type="checkbox" name="ski" value="Ski" id ="ski">
+        <label for="ski">Skiing</label><br>
+        <input type="checkbox" name="run" value="Run" id ="run">
+        <label for="run">Running</label><br>
+        <input type="checkbox" name="dance" value="Dance" id ="dance">
+        <label for="dance">Dancing</label><br>
+        <input type="checkbox" name="basket" value="Basketball"  id ="basket">
+        <label for="basket">Basketball</label><br>
+        <input type="checkbox" name="track" value="Track" id ="track">
+        <label for="track">Track</label><br>
+        <p>Interest level in golfing</p>
+        <p>Low<input type="range" min="1" max="10" value="5">High</p>
+
+        <h3>Class</h3>
+          <input type="radio" id="fresh" name="Freshman" value="Fresh">
+          <label for="fresh">Freshman</label><br>
+          <input type="radio" id="sopho" name="Sophomore" value="Sopho">
+          <label for="sopho">Sophomore</label><br>
+          <input type="radio" id="junior" name="Junior" value="Junior">
+          <label for="junior">Junior</label><br>
+          <input type="radio" id="senior" name="Senior" value="Senior">
+          <label for="senior">Senior</label><br>
+
+          <label for="year">Graduation Year</label>
+
+          <select name="year" id="year">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select><br>
+
+          <input type="submit" value = "Submit">
+
+      </form>
+
+    </main>
+
+    <footer>
+        <p><small>Abdul Asif, aw16asif@siena.edu, (123) 444-8282</small></p>
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+body {
+  background-color: gray;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nava {
+    font-size: 20px;
+    background-color: blue;
+    text-decoration: none;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 200px;
+}
+
+.headers {
+  font-family: "Arial";
+  color: blue;
+  text-decoration: underline overline;
+}
+
+.imgs {
+  width: 600px;
+  height: 600px;
+}
+
+.album_caption {
+  font-family: "Arial";
+  font-size: 20px;
+}
+
+.cur {
+  background-color: red;
+}
