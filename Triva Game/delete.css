@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+  background-color: gray;
+}
+
+form {
+  border: 3px solid black;
+}
+
+label, select {
+  font: bold small-caps 24px Andale Mono, monospace;
+}
+
+h1 {
+  font: bold small-caps 48px Andale Mono, monospace;
+}
